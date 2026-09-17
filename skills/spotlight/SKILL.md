@@ -46,6 +46,7 @@ Parse these options:
 | `--no-sfx` | flag | sfx on |
 | `--title` | string | inferred from project |
 | `--voice` | flag | narration off |
+| `--brand` | saved brand slug | none (extract from project) |
 
 Voice is opt-in. If `--voice` is present, use Kokoro via Hyperframes and do
 not add any provider-selection logic. The voice workflow is intentionally
@@ -62,6 +63,14 @@ not simply read visible text, matches scene pacing, sounds natural and
 conversational, and moves smoothly between scenes. Keep the script concise and
 specific to the product so the voice feels like part of the edit rather than a
 separate narration track.
+
+---
+
+## Brand subcommands
+
+If the invocation is `/spotlight brand add <path> --name "<Name>"` or `/spotlight brand list`, this is not a video-generation run — read [references/brand-kits.md](references/brand-kits.md) and follow its ingestion or listing flow instead of Step 1–4 below.
+
+Otherwise, if `--brand <slug>` is present on a normal invocation, read [references/brand-kits.md](references/brand-kits.md) before Step 1 — it changes how Step 1 sources colors/fonts, how Step 2 fills Visual Identity, and how Step 3 builds the composition brief.
 
 ---
 
