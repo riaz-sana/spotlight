@@ -1,6 +1,6 @@
-# Step 2: Write the brag plan
+# Step 2: Write the spotlight plan
 
-Write `brag-output/brag-plan.md`. One focused page. This is the creative north star for the entire video.
+Write `spotlight-output/spotlight-plan.md`. One focused page. This is the creative north star for the entire video.
 
 The plan should specify what the video must communicate and what project material must be used. It should not prescribe low-level Hyperframes implementation details. Hyperframes will decide the concrete composition structure, animation mechanics, and render workflow from the brief in Step 3.
 
@@ -10,10 +10,10 @@ The plan should specify what the video must communicate and what project materia
 mkdir -p <output-dir>
 ```
 
-## Structure of brag-plan.md
+## Structure of spotlight-plan.md
 
 ```markdown
-# Brag Plan: [App Name]
+# Spotlight Plan: [App Name]
 
 ## What is this app?
 [One sentence. What it does, what makes it funny or impressive.]
@@ -117,7 +117,7 @@ Scene durations must sum to 15-25 seconds. Count them.
 
 - Under 15 seconds: too thin, add a scene or lengthen holds.
 - Over 25 seconds: cut a scene or tighten timing.
-- 18-22 seconds is the sweet spot for most brag videos.
+- 18-22 seconds is the sweet spot for most spotlight videos.
 
 ## Reading time (keep the pace, not at text's expense)
 
@@ -135,7 +135,7 @@ Two failure modes to design out at the plan stage:
 
 ## Choosing what to show
 
-Every brag video must show something real from the product. Options, in preferred order:
+Every spotlight video must show something real from the product. Options, in preferred order:
 
 1. **Recreate a working-app moment** — the upload screen, the result view, the dashboard with real-looking content. Use real source from `app/`, `pages/`, or routed components — not just the landing page. This is the most compelling option whenever the product has a flow. The product *doing* its thing beats the product *describing* its thing.
 2. **Recreate a UI element in HTML** — a hero card, swipe UI, progress meter, stat block. Strong when there is no flow to show.
@@ -165,7 +165,7 @@ If the project has no app (landing-page-only static site), skip this section and
 
 Before writing the storyboard, ask: **does this product have things that can appear one by one, or actions that can be simulated?**
 
-These are among the most effective moments in a brag video — they make the product feel alive and real, not like a slide deck. Look for:
+These are among the most effective moments in a spotlight video — they make the product feel alive and real, not like a slide deck. Look for:
 
 - **Sequential reveals** — feature cards, stats, list items, match results, profile cards, menu options, or anything the product shows as a set. Design these to appear one by one so sound and motion reinforce each arrival. This is a storyboard decision, not an audio afterthought.
 - **Simulated interaction** — if the product involves swiping, clicking, typing, selecting, or toggling, show it. A cursor clicking a button, a swipe gesture on a card, or text being typed into a field turns a static mockup into a demonstration. Sound matches the action automatically when the gesture is in the storyboard.
@@ -190,7 +190,7 @@ Format: `Audio-coupled idea: type the hook with subtle key ticks if Hyperframes 
 
 For audio-reactive visuals, say what should respond and how restrained it should be. Example: `Audio-reactive treatment: subtle; use music RMS/bass to make the hero glow and product card presence breathe, not to add waveform bars.`
 
-Do not require exact SFX filenames in `brag-plan.md` unless the user explicitly requested a specific sound or the mapping is unavoidable. Prefer moment types and intent.
+Do not require exact SFX filenames in `spotlight-plan.md` unless the user explicitly requested a specific sound or the mapping is unavoidable. Prefer moment types and intent.
 
 Hyperframes has creative freedom to choose exact files, density, and timestamps that make the video feel smooth and professional.
 
@@ -198,7 +198,7 @@ Do not over-specify audio if the tone asks for restraint. For `yc-parody` or `de
 
 ## Music cue guidance
 
-Beat/cue sync is available for any track now (see `audio.md` → "Beat and cue sources"): bundled tracks have precomputed presets; custom tracks get cues at composition time via `analyze_music_cues.py` (rich, needs Python) or `npx hyperframes beats` (simple, zero-dep). When the plan chooses music, add a compact `Music cue guidance` section to `brag-plan.md`:
+Beat/cue sync is available for any track now (see `audio.md` → "Beat and cue sources"): bundled tracks have precomputed presets; custom tracks get cues at composition time via `analyze_music_cues.py` (rich, needs Python) or `npx hyperframes beats` (simple, zero-dep). When the plan chooses music, add a compact `Music cue guidance` section to `spotlight-plan.md`:
 
 - The track and, if a preset exists, its tempo.
 - 1-3 strong-cue timestamps to target for major visual moments — from the preset if bundled, otherwise note "to be detected at composition time."
