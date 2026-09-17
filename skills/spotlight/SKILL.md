@@ -81,6 +81,27 @@ Generate the timestamp at the start of the run (`YYYY-MM-DD-HHmmss`) and use it 
 
 ---
 
+## Progress visibility
+
+The full pipeline can take several minutes, dominated by Step 3 (compose) and Step 4 (render). Announce a short status line at the start of each step so the user always knows where a run stands:
+
+- `Step 1/4 — Inspecting project...`
+- `Step 2/4 — Planning and storyboarding...`
+- `Step 3/4 — Composing with Hyperframes (usually the slowest step)...`
+- `Step 4/4 — Rendering...`
+
+**Step 2's status line is different in kind, not just wording, once the plan is written and the checkpoint from "Step 2: Plan and storyboard" is reached — it reads as blocked, not in-progress:**
+
+```
+Step 2/4 — Plan ready, waiting on your review. Approve, request edits, or add your own direction before I continue.
+```
+
+This is the only point in the pipeline that stops and waits on the user today. Never let a "waiting on you" state read like an in-progress status line — the user needs to be able to tell "still working" apart from "needs your input" at a glance.
+
+During Step 4, relay the `npx hyperframes render` subprocess's own progress output live as it streams, rather than staying silent until it finishes.
+
+---
+
 ## Step 1: Inspect the project
 
 **Read:** [references/step-1-inspect.md](references/step-1-inspect.md)
@@ -99,7 +120,7 @@ Write `<output-dir>/spotlight-plan.md` (where `<output-dir>` is `spotlight-outpu
 
 When music is selected, include a compact `Music cue guidance` section: read the bundled track's cue preset from `assets/music/cues/` if present, otherwise note cues will be detected at composition time (any track now supports beat sync — see `references/audio.md`). Cue metadata is optional timing guidance only: story, readability, pacing, and product clarity stay primary.
 
-**Gate:** `<output-dir>/spotlight-plan.md` exists with a full storyboard. Scene durations sum to 15–25 seconds.
+**Gate:** `<output-dir>/spotlight-plan.md` exists with a full storyboard. Scene durations sum to 15–25 seconds. **Then stop and present the plan to the user — do not proceed to Step 3 until they respond.** They may approve as-is, request specific edits, or supply their own narrative direction outright. Revise and re-present until they explicitly approve. Only then continue.
 
 ---
 
