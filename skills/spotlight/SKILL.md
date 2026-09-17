@@ -1,25 +1,25 @@
 ---
-name: brag
-description: Turn the current project website into a short, polished, shareable launch video using Hyperframes. Use when someone says "/brag", "let's brag about this", "make a launch video", "turn this into a video", or wants to share what they built. Reads the project code directly — no live URL or screenshots needed.
+name: spotlight
+description: Turn the current project website into a short, polished, shareable launch video using Hyperframes. Use when someone says "/spotlight", "let's spotlight this", "make a launch video", "turn this into a video", or wants to share what they built. Reads the project code directly — no live URL or screenshots needed.
 ---
 
-# /brag
+# /spotlight
 
-You built it. Now let's brag about it.
+You built it. Now let's put it in the spotlight.
 
 ## Invocation dispatch (must happen first)
 
-Before inspecting the project, parse the complete `/brag` invocation. If the
+Before inspecting the project, parse the complete `/spotlight` invocation. If the
 invocation contains `--voice`, set `voice.enabled = true`. Enable narration
 only for that run. Do not enable narration automatically and do not fall back
 to the normal no-voice workflow.
 
-`/brag` turns the current project website or app into a short, polished, shareable launch video using Hyperframes. It is narrow, opinionated, and fun.
+`/spotlight` turns the current project website or app into a short, polished, shareable launch video using Hyperframes. It is narrow, opinionated, and fun.
 
 ## What this skill does
 
 1. Reads the current project code to understand the app.
-2. Plans a short brag concept specific to this project.
+2. Plans a short spotlight concept specific to this project.
 3. Scripts and storyboards the video.
 4. Hands a focused composition brief to Hyperframes.
 5. Validates, renders, and writes share copy.
@@ -29,10 +29,10 @@ to the normal no-voice workflow.
 The user may invoke with natural language or flags:
 
 ```
-/brag
-/brag --tone chaotic
-/brag --tone polished --format vertical
-/brag this. Make it feel like a ridiculous startup launch.
+/spotlight
+/spotlight --tone chaotic
+/spotlight --tone polished --format vertical
+/spotlight this. Make it feel like a ridiculous startup launch.
 ```
 
 Parse these options:
@@ -67,15 +67,15 @@ separate narration track.
 
 ## Output directory
 
-By default, output goes to `brag-output/`. To avoid overwriting previous runs, use a timestamped directory:
+By default, output goes to `spotlight-output/`. To avoid overwriting previous runs, use a timestamped directory:
 
 ```
-brag-output-2026-05-04-143022/
+spotlight-output-2026-05-04-143022/
 ```
 
 Use a timestamp when:
 - The user explicitly asks for a new run without overriding previous results
-- A `brag-output/` directory already exists in the project
+- A `spotlight-output/` directory already exists in the project
 
 Generate the timestamp at the start of the run (`YYYY-MM-DD-HHmmss`) and use it consistently for all output paths in that run: plan, brief, composition, render, and share copy.
 
@@ -85,9 +85,9 @@ Generate the timestamp at the start of the run (`YYYY-MM-DD-HHmmss`) and use it 
 
 **Read:** [references/step-1-inspect.md](references/step-1-inspect.md)
 
-Scan the project directory and extract the information needed to plan the brag video.
+Scan the project directory and extract the information needed to plan the spotlight video.
 
-**Gate:** You can answer all 9 questions in the brag planning rubric.
+**Gate:** You can answer all 9 questions in the spotlight planning rubric.
 
 ---
 
@@ -95,23 +95,23 @@ Scan the project directory and extract the information needed to plan the brag v
 
 **Read:** [references/step-2-plan.md](references/step-2-plan.md)
 
-Write `<output-dir>/brag-plan.md` (where `<output-dir>` is `brag-output/` or the timestamped variant chosen above). Answer the planning rubric. Commit to a creative angle. Write the beat-by-beat storyboard including scenes, text, timing, transitions, and SFX cues.
+Write `<output-dir>/spotlight-plan.md` (where `<output-dir>` is `spotlight-output/` or the timestamped variant chosen above). Answer the planning rubric. Commit to a creative angle. Write the beat-by-beat storyboard including scenes, text, timing, transitions, and SFX cues.
 
 When music is selected, include a compact `Music cue guidance` section: read the bundled track's cue preset from `assets/music/cues/` if present, otherwise note cues will be detected at composition time (any track now supports beat sync — see `references/audio.md`). Cue metadata is optional timing guidance only: story, readability, pacing, and product clarity stay primary.
 
-**Gate:** `<output-dir>/brag-plan.md` exists with a full storyboard. Scene durations sum to 15–25 seconds.
+**Gate:** `<output-dir>/spotlight-plan.md` exists with a full storyboard. Scene durations sum to 15–25 seconds.
 
 ---
 
 ## Step 3: Hand off to Hyperframes
 
-**Read:** The Hyperframes domain skills — `hyperframes-core`, `hyperframes-animation`, `hyperframes-creative`, `hyperframes-keyframes`, `hyperframes-cli`. /brag is its own workflow: do not enter the `hyperframes` entry-point intent interview or route into its generic promo / launch-video workflow.
+**Read:** The Hyperframes domain skills — `hyperframes-core`, `hyperframes-animation`, `hyperframes-creative`, `hyperframes-keyframes`, `hyperframes-cli`. /spotlight is its own workflow: do not enter the `hyperframes` entry-point intent interview or route into its generic promo / launch-video workflow.
 **Read:** [references/step-3-compose.md](references/step-3-compose.md)
 **Read:** [references/audio.md](references/audio.md)
 
 Write the composition brief and use Hyperframes to create the video implementation in `<output-dir>/composition/`.
 
-`/brag` owns the product angle, source material, storyboard, tone, format, audio selection, music cue guidance, and delivery expectations. Hyperframes owns the concrete composition structure, exact animation timing, animation mechanics, runtime choices, linting rules, and render workflow.
+`/spotlight` owns the product angle, source material, storyboard, tone, format, audio selection, music cue guidance, and delivery expectations. Hyperframes owns the concrete composition structure, exact animation timing, animation mechanics, runtime choices, linting rules, and render workflow.
 
 **Gate:** `npx hyperframes check` passes with zero errors inside `<output-dir>/composition/` (the single browser gate before render — see hyperframes-cli for what it audits).
 
@@ -121,15 +121,15 @@ Write the composition brief and use Hyperframes to create the video implementati
 
 **Read:** [references/step-4-deliver.md](references/step-4-deliver.md)
 
-Validate, preview, render to `<output-dir>/brag.mp4`, pick the best poster frame into `<output-dir>/brag.jpg`, bake that poster as the video's frame 0 so it's the idle thumbnail everywhere, and write `<output-dir>/share-copy.txt`.
+Validate, preview, render to `<output-dir>/spotlight.mp4`, pick the best poster frame into `<output-dir>/spotlight.jpg`, bake that poster as the video's frame 0 so it's the idle thumbnail everywhere, and write `<output-dir>/share-copy.txt`.
 
-**Gate:** `<output-dir>/brag.mp4` exists. A best-frame poster `<output-dir>/brag.jpg` is picked (not an arbitrary frame) and baked as frame 0 of `brag.mp4`. Share copy is written.
+**Gate:** `<output-dir>/spotlight.mp4` exists. A best-frame poster `<output-dir>/spotlight.jpg` is picked (not an arbitrary frame) and baked as frame 0 of `spotlight.mp4`. Share copy is written.
 
 ---
 
 ## Tone system
 
-Seven tone presets ship with `/brag`. Each changes scripting energy, pacing, typography personality, and transition style. Presets are defaults, not limits.
+Seven tone presets ship with `/spotlight`. Each changes scripting energy, pacing, typography personality, and transition style. Presets are defaults, not limits.
 
 Full definitions: [references/tones.md](references/tones.md)
 
@@ -149,7 +149,7 @@ Always allow a freeform creative direction to refine or override the preset.
 
 ## Creative laws
 
-These apply to every brag video regardless of tone.
+These apply to every spotlight video regardless of tone.
 
 **Short.** 15–25 seconds. Not one second more without a reason.
 
