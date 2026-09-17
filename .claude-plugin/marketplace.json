@@ -1,14 +1,13 @@
 {
-  "name": "brag",
-  "description": "You built it. Now brag. Turn the project you just shipped into a short, shareable launch video with one command.",
+  "name": "spotlight",
+  "description": "You built it. Now put it in the spotlight. Turn the project you just shipped into a short, shareable launch video with one command.",
   "owner": {
-    "name": "Shunit Haviv Hakimi",
-    "email": "shunithaviv@gmail.com",
-    "url": "https://github.com/shunithaviv"
+    "name": "Sana Riaz",
+    "email": "sanariaz154@gmail.com"
   },
   "plugins": [
     {
-      "name": "brag",
+      "name": "spotlight",
       "source": "./",
       "description": "Turn the current project website into a short, polished, shareable launch video using HyperFrames."
     }
