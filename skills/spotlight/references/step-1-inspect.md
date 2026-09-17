@@ -106,6 +106,12 @@ Write down:
 
 These colors are recorded in `composition-brief.md` and carry into the design spec the current hyperframes-creative workflow scaffolds.
 
+## Brand-aware sourcing (when `--brand` is active)
+
+If a brand kit is active, do not use the project's own colors/fonts for the frame — load them from `brands/<slug>/tokens.json` instead (see `brand-kits.md`). Still extract the project's own real UI colors *and* fonts as described above and below — they're needed separately, for the frame-only scoping rule that keeps recreated product UI looking like the actual product. Content, copy, and flow extraction (questions 1–5, 7–9) are unchanged either way.
+
+Tone resolution also changes: if `--brand` is active and the user did not pass `--tone` explicitly, use the brand's pinned `tone.preset` for question 6 instead of inferring one. An explicit `--tone` flag still overrides the brand's pin.
+
 ## Font extraction
 
 Look for:

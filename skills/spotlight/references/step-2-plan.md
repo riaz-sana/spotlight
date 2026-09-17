@@ -48,12 +48,24 @@ landing-page-only, write "none — landing-page only" and rely on Key moments in
 ## Format: [landscape / vertical / square] — [width]x[height]
 ## Duration: [target seconds]
 
-## Visual identity (from the project)
-- Background: [exact color value]
-- Accent: [exact color value]
-- Text: [exact color value]
-- Display font: [name]
-- Body font: [name]
+## Visual identity
+
+If no brand kit is active, fill only "Project identity" below and skip "Brand identity (frame)".
+
+### Brand identity (frame) — only when `--brand` is active
+- Background: [exact color value from the brand kit]
+- Accent: [exact color value from the brand kit]
+- Text: [exact color value from the brand kit]
+- Display font: [from the brand kit]
+- Body font: [from the brand kit]
+- Logo: [brand kit logo file, composited at outro]
+
+### Project identity (for recreated product UI, and for the frame when no brand is active)
+- Background: [exact color value from the project]
+- Accent: [exact color value from the project]
+- Text: [exact color value from the project]
+- Display font: [name, from the project]
+- Body font: [name, from the project]
 - Strongest visual element: [what from the site to reference]
 
 ## Share copy (draft)

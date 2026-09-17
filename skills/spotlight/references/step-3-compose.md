@@ -39,6 +39,17 @@ Create a short launch-style spotlight video for [App Name].
   - Unrelated visual redesign
 
 ## Visual Identity
+
+Splits the same way `spotlight-plan.md` does — carry both colors and fonts for each side into this brief. If no brand kit is active, fill only "Project identity".
+
+### Brand identity (frame) — only when `--brand` is active
+- Background / Text / Accent: [exact values from the brand kit]
+- Display font / Body font: [from the brand kit — reference the actual font file path under `composition/assets/fonts/` if `source: "bundled"`, or note the Google Fonts family if `source: "google-fonts"`]
+- Logo: [path under `composition/assets/logo/`, composited at the outro]
+- Brand constraints: [the brand kit's `doNots`, verbatim]
+- Brand voice notes: [the brand kit's `tone.voiceNotes`, verbatim]
+
+### Project identity (for recreated product UI, and for the frame when no brand is active)
 - Background: [exact value from project]
 - Text: [exact value from project]
 - Accent: [exact value from project]
@@ -103,6 +114,20 @@ cp <skill-assets>/music/<track>.mp3 <output-dir>/composition/assets/music/
 When running from an installed Claude skill, `<skill-assets>` is `~/.claude/skills/spotlight/assets/`. From the repo, it is `skills/spotlight/assets/`.
 
 Hyperframes copies any SFX it selects into the same `assets/` tree after choosing exact files.
+
+---
+
+## Brand asset preparation (when `--brand` is active)
+
+Copy the brand kit's font files and logo into the composition before building it:
+
+```bash
+mkdir -p <output-dir>/composition/assets/fonts <output-dir>/composition/assets/logo
+cp brands/<slug>/assets/fonts/*.woff2 <output-dir>/composition/assets/fonts/
+cp brands/<slug>/assets/logo/logo.* <output-dir>/composition/assets/logo/
+```
+
+If the brand kit pins a music track under `brands/<slug>/assets/music/`, copy it the same way the bundled tracks are copied (see "Audio asset preparation" above) unless the user's invocation overrides it.
 
 ---
 
