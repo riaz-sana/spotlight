@@ -1,39 +1,20 @@
-# /brag
+# /spotlight
 
-**You built it. Now brag.**
+**You built it. Now put it in the spotlight.**
 
-[![the /brag launch site — you built it, now brag](docs/assets/hero.png)](https://latent-spaces.github.io/brag/)
+`/spotlight` is a Claude Code skill that turns the project you created into a short, shareable launch video — music, motion, and share copy included. One command, powered by [Hyperframes](https://hyperframes.heygen.com/).
 
-`/brag` is a Claude Code skill that turns the project you created into a short, shareable launch video — music, motion, and share copy included. One command, powered by [Hyperframes](https://hyperframes.heygen.com/).
-
-The looping video on the [launch site](https://latent-spaces.github.io/brag/) was made by `/brag` on this very repo. 
+This is an internal fork of [`latent-spaces/brag`](https://github.com/latent-spaces/brag) (MIT), renamed and extended with a multi-brand-kit system. See `LICENSE` for the original copyright notice.
 
 ## Install
 
-```bash
-/plugin marketplace add latent-spaces/brag
-/plugin install brag@brag
-```
-
-Then run `/brag` inside any project.
-
-**Any other agent** — one command via the [`skills`](https://github.com/vercel-labs/skills) CLI (Cursor, Codex, Copilot, Gemini CLI, opencode, and more):
+Copy the skill directly:
 
 ```bash
-npx skills add https://github.com/latent-spaces/brag --skill brag
-```
-
-Add `-g` to install globally (available in every project); drop it to scope to the current one. ([browse on skills.sh](https://www.skills.sh/latent-spaces/brag/brag))
-
-<details>
-<summary>No installer? Copy the skill directly.</summary>
-
-```bash
-rsync -a --exclude '.DS_Store' skills/brag/ ~/.claude/skills/brag/
+rsync -a --exclude '.DS_Store' skills/spotlight/ ~/.claude/skills/spotlight/
 ```
 
 Restart Claude Code after copying.
-</details>
 
 ### Also works with
 
@@ -41,40 +22,66 @@ This repo exposes the skill at every agent's standard discovery path via symlink
 
 | Agent | How it discovers |
 |---|---|
-| **opencode** | Auto-detects from `.opencode/skills/brag/` at project root |
-| **Codex CLI** | Reads `.agents/skills/brag/`, walking up to repo root |
-| **Claude Code** | Also reads `.claude/skills/brag/` (in addition to the `.claude-plugin/` marketplace install above) |
-| **Other agents** | Point custom instructions at `skills/brag/SKILL.md` — see [`docs/other-agents.md`](docs/other-agents.md) |
+| **opencode** | Auto-detects from `.opencode/skills/spotlight/` at project root |
+| **Codex CLI** | Reads `.agents/skills/spotlight/`, walking up to repo root |
+| **Claude Code** | Also reads `.claude/skills/spotlight/` |
+| **Other agents** | Point custom instructions at `skills/spotlight/SKILL.md` |
 
-> **Windows users:** Git requires `git config core.symlinks true` (or `git clone -c core.symlinks=true`) and Windows Developer Mode or Administrator privileges to create symlinks. If symlinks don't work on your system, copy `skills/brag/` to the agent's skill directory manually instead.
+> **Windows users:** Git requires `git config core.symlinks true` (or `git clone -c core.symlinks=true`) and Windows Developer Mode or Administrator privileges to create symlinks. If symlinks don't work on your system, copy `skills/spotlight/` to the agent's skill directory manually instead.
 
 ## Use it
 
 From any project directory, ask your agent:
 
 ```text
-let's /brag
+let's /spotlight
 ```
 
 Or steer the tone:
 
 ```text
-/brag --tone "fake Series A launch from 2016"
+/spotlight --tone "fake Series A launch from 2016"
+```
+
+Apply a saved brand kit instead of extracting colors/fonts from the project:
+
+```text
+/spotlight --brand acme
+```
+
+Add a new brand kit from a PDF or HTML brand guideline:
+
+```text
+/spotlight brand add ./acme-brand-guide.pdf --name "Acme"
+```
+
+List saved brand kits:
+
+```text
+/spotlight brand list
 ```
 
 Voiceover is off by default. Enable it explicitly with:
 
 ```text
-/brag --voice
+/spotlight --voice
 ```
 
 Narration uses Kokoro through Hyperframes when enabled.
 
-You get a `brag-output/` folder with the plan, a composition brief, share copy, and the rendered `brag.mp4`.
+After the plan is written, Spotlight pauses and waits for you to approve, edit, or redirect it before composing anything — see "How it works" below.
+
+You get a `spotlight-output/` folder with the plan, a composition brief, share copy, and the rendered `spotlight.mp4`.
 
 ## How it works
 
-`/brag` owns the story — the product angle, tone, and which moments to show. It hands a focused brief to [Hyperframes](https://hyperframes.heygen.com/), which builds, times, and renders the video.
+`/spotlight` owns the story — the product angle, tone, and which moments to show, plus (optionally) a saved brand kit's colors, fonts, logo, and pinned tone/music. It hands a focused brief to [Hyperframes](https://hyperframes.heygen.com/), which builds, times, and renders the video.
+
+The pipeline is four steps — inspect, plan, compose, deliver — and pauses once, after the plan is written, for your review.
+
+## Brand kits
+
+See `skills/spotlight/references/brand-kits.md` for the full schema and ingestion flow. Short version: `brands/<slug>/tokens.json` holds a brand's colors, fonts, logo, pinned tone/music, and do's/don'ts; `/spotlight brand add` ingests one from a PDF or HTML guideline; `/spotlight --brand <slug>` applies one to a run. Omit `--brand` and Spotlight extracts visual identity from the project being spotlighted, same as it always has.
 
 ## Requirements
 
@@ -85,13 +92,13 @@ You get a `brag-output/` folder with the plan, a composition brief, share copy, 
 
 ## What's in this repo
 
-- `skills/brag/` — the skill, references, and bundled music + SFX
+- `skills/spotlight/` — the skill, references, and bundled music + SFX
+- `brands/` — saved brand kits (colors, fonts, logo, pinned tone/music per brand)
 - `examples/` — fake product sites used as a benchmark suite
-- `docs/` — the launch site (GitHub Pages)
 - `.claude-plugin/` — plugin manifest + marketplace catalog
-- `.claude/skills/brag/` — symlink → `skills/brag/` (Claude Code discovery)
-- `.agents/skills/brag/` — symlink → `skills/brag/` (Codex CLI + opencode discovery)
-- `.opencode/skills/brag/` — symlink → `skills/brag/` (opencode discovery)
+- `.claude/skills/spotlight/` — symlink → `skills/spotlight/` (Claude Code discovery)
+- `.agents/skills/spotlight/` — symlink → `skills/spotlight/` (Codex CLI + opencode discovery)
+- `.opencode/skills/spotlight/` — symlink → `skills/spotlight/` (opencode discovery)
 
 ## Credits
 
@@ -99,7 +106,4 @@ You get a `brag-output/` folder with the plan, a composition brief, share copy, 
 - Sound effects — [Kenney](https://kenney.nl/)
 - Video generation — [Hyperframes](https://hyperframes.heygen.com/)
 - Fake demo sites — built with [Impeccable](https://impeccable.style/)
-
-## Contributing
-
-Contributions, ideas, and new demo brags are welcome — open an issue or a PR.
+- Originally built as [`brag`](https://github.com/latent-spaces/brag) by Shunit Haviv Hakimi
